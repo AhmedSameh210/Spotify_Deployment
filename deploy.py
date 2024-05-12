@@ -321,16 +321,14 @@ def predict(genres, Song_Name, Artist_Name, Album_Name,Date,song_duration,Acoust
             if len(data) == 2:
                 if data[1] == Artist_Name:
                     Top_100_art_sc = 1
-                    print("hello")
+          
                     break
-    print("After")
-    with open('Album_Rank.csv', 'r') as file:
-        for line in file:
-            data = line.strip()
-            if data == Album_Name:
-                Top_1800_Album = 1
-                print("hello")
-                break
+    data = pd.read_csv('Album_Rank.csv', encoding='latin-1')
+    d=list(data)
+    for i in d :
+      if i == Album_Name:
+        Top_1800_Album = 1
+        break
     clust_no = Clusters(num_entered_genres,total_weight,num_entered_genres*total_weight,day,month,Year)
     X_regression = np.array([[rank,safe_log(song_duration),math.sqrt(Acoustincess),Danceability,Energy,safe_log(Instrumentalness),safe_log(Liveness),Loudness,safe_log(Speechness),Tempo,Valence,Key,TimeSignature,safe_log(no_of_words),safe_log(no_of_chars),num_of_available_market,year_rank,safe_log(num_entered_genres),safe_log(total_weight),safe_log(num_entered_genres*total_weight),month,Year,int(is_colorful),has_potential,Top_100_art_sc,mode,Top_1800_Album,decade["Decade_Eighties"],decade["Decade_Fifties"],decade["Decade_Fourties"],decade["Dcade_old"],decade["Decade_Seventies"],decade["Decade_Sixties"],decade["Decade_Thirties"],decade["Decade_new millennium"],seasons["Autumn"],seasons["spring"],seasons["Winter"],int(duration_Category=="average_time"),int(duration_Category=="small_time"),
                   genre_dic['country road'],genre_dic["contemporary country"],genre_dic["country dawn"],genre_dic["country"],genre_dic["contemporary r&b"],genre_dic["hip pop"],genre_dic["r&b"],genre_dic["urban contemporary"],genre_dic["bubblegum pop"],genre_dic["movie tunes"],genre_dic["easy listening"],genre_dic["vocal jazz"],genre_dic["adult standards"],genre_dic["lounge"],genre_dic["karaoke"],genre_dic["rock"],genre_dic["glam metal"],genre_dic["hard rock"],genre_dic["album rock"],genre_dic["pop rock"],genre_dic["canadian singer-songwriter"],genre_dic["neo mellow"],genre_dic["lilith"],genre_dic["canadian pop"],genre_dic["singer-songwriter"],genre_dic["neon pop punk"],genre_dic["pop punk"],genre_dic['new wave pop'],genre_dic["pop"],genre_dic['"womens music"'],genre_dic["soft rock"],genre_dic["art rock"],genre_dic["classic rock"],genre_dic["progressive rock"],genre_dic["mellow gold"],genre_dic["symphonic rock"],genre_dic["northern soul"],genre_dic["skiffle"],
